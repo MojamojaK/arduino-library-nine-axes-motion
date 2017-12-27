@@ -746,7 +746,19 @@ public:
 	int16_t readQuaternion(int axis);
 	void readQuat(int16_t& w, int16_t& x, int16_t& y, int16_t& z);
 	int16_t readQuat(int quaternion);
-
+    
+    /* ACCEL OFFSET */
+    void readAccelOffset(int16_t* offset_array);
+    void writeAccelOffset(int16_t* offset_array);
+    
+    /* MAG OFFSET */
+    void readMagOffset(int16_t* offset_array);
+    void writeMagOffset(int16_t* offset_array);
+    
+    /* GYRO OFFSET */
+    void readGyroOffset(int16_t* offset_array);
+    void writeGyroOffset(int16_t* offset_array);
+    
 };
 
 /******************** Bridge Functions for the Sensor API to control the Arduino Hardware******************************************/
