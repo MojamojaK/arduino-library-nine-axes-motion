@@ -1224,3 +1224,59 @@ int16_t NineAxesMotion::readQuat(int axis)
 {
 		return readQuaternion(axis);
 }
+
+void NineAxesMotion::readAccelOffset(int16_t* offset_array){
+    struct bno055_accel_offset_t accel_offset;
+    bno055_read_accel_offset(&accel_offset);
+    offset_array[0] = accel_offset.x;
+    offset_array[1] = accel_offset.y;
+    offset_array[2] = accel_offset.z;
+    offset_array[3] = accel_offset.r;
+}
+
+void NineAxesMotion::readMagOffset(int16_t* offset_array){
+    struct bno055_mag_offset_t mag_offset;
+    bno055_read_mag_offset(&mag_offset);
+    offset_array[0] = mag_offset.x;
+    offset_array[1] = mag_offset.y;
+    offset_array[2] = mag_offset.z;
+    offset_array[3] = mag_offset.r;
+}
+
+
+void NineAxesMotion::readGyroOffset(int16_t* offset_array){
+    struct bno055_gyro_offset_t gyro_offset;
+    bno055_read_gyro_offset(&gyro_offset);
+    offset_array[0] = gyro_offset.x;
+    offset_array[1] = gyro_offset.y;
+    offset_array[2] = gyro_offset.z;
+}
+
+void NineAxesMotion::writeAccelOffset(int16_t* offset_array){
+    struct bno055_accel_offset_t accel_offset;
+    accel_offset.x = offset_array[0];
+    accel_offset.y = offset_array[1];
+    accel_offset.z = offset_array[2];
+    accel_offset.r = offset_array[3];
+    bno055_write_accel_offset(&accel_offset);
+}
+
+void NineAxesMotion::writeMagOffset(int16_t* offset_array){
+    struct bno055_mag_offset_t mag_offset;
+    mag_offset.x = offset_array[0];
+    mag_offset.y = offset_array[1];
+    mag_offset.z = offset_array[2];
+    mag_offset.r = offset_array[3];
+    bno055_write_mag_offset(&mag_offset);
+    
+}
+
+void NineAxesMotion::writeGyroOffset(int16_t* offset_array){
+    struct bno055_gyro_offset_t gyro_offset;
+    gyro_offset.x = offset_array[0];
+    gyro_offset.y = offset_array[1];
+    gyro_offset.z = offset_array[2];
+    bno055_write_gyro_offset(&gyro_offset);
+}
+
+
