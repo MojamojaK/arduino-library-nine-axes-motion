@@ -7,6 +7,29 @@ advanced features in the Sensor API. Apart from that it acts a bridge
 between the Sensor API and the Arduino framework. Copy this library into
 "yourArduinoInstallation"/libraries folder.
 
+(追記) Euler_SaveCalにキャリブレーションに必要なオフセット値の読取り、書き込みの例を記載しております。
+
+67, 158行目
+```
+mySensor.setOperationMode(OPERATION_MODE_CONFIG);
+```
+で読取り&書き込み可能モードしている。このモードの間は設定しか行えないため、測定はできない。
+
+71行目
+```
+mySensor.setOperationMode(OPERATION_MODE_NDOF);
+```
+で9軸モード(NDOF = Nine Degrees Of Freedom)にしている。このモードの間は測定とキャリブレーションが行われる。
+
+159~161行目
+```
+mySensor.readAccelOffset(accel_offset);
+mySensor.readMagOffset(mag_offset);
+mySensor.readGyroOffset(gyro_offset);
+```
+で各センサのオフセット値を各メソッドのパラメータに入れた配列に代入する。
+これらの値を保存して電源を入れた際に書き込みを行えばキャリブレーションを行わずに起動ができる。
+
 
 -------------------------------------------------------------------------------
 There are 4 examples with the 9 Axes Motion library.
